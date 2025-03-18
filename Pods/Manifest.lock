@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (5.10.2)
+  - Kingfisher (7.12.0)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
+  - SQLite.swift (0.14.1):
+    - SQLite.swift/standard (= 0.14.1)
+  - SQLite.swift/standard (0.14.1)
+  - XLPagerTabStrip (9.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher (~> 7.0)
+  - RxCocoa (= 6.9.0)
+  - RxSwift (= 6.9.0)
+  - SQLite.swift (~> 0.14.0)
+  - XLPagerTabStrip (~> 9.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SQLite.swift
+    - XLPagerTabStrip
+
+SPEC CHECKSUMS:
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
+  XLPagerTabStrip: 27f3bfe23c53b4251c6481b06b1c289458a3fc1d
+
+PODFILE CHECKSUM: 1c463a9aac81bb9da090274cf37d8437ced3a934
+
+COCOAPODS: 1.16.2
