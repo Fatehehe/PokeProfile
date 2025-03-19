@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
     
     
     private let textUsername = UILabel()
+    private let logoutButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
         LoginViewModel.shared.username
             .bind(to: textUsername.rx.text)
             .disposed(by: disposeBag)
+        
+        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
     }
 
     init(viewModel: ProfileViewModel) {
@@ -41,21 +44,35 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
         textUsername.font = UIFont.systemFont(ofSize: 24)
         textUsername.textColor = .black
         
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.backgroundColor = .red
+        logoutButton.layer.cornerRadius = 10
+        
         textUsername.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(textUsername)
+        view.addSubview(logoutButton)
         
         NSLayoutConstraint.activate([
             textUsername.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textUsername.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            textUsername.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoutButton.bottomAnchor.constraint(equalTo: textUsername.bottomAnchor, constant: 100),
+            logoutButton.widthAnchor.constraint(equalToConstant: 200),
+            logoutButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     
     }
     
     @objc func logoutTapped() {
         // Navigate back to LoginViewController
+        LoginViewModel.shared.logout()
+        
         let loginVC = LoginViewController()
-        navigationController?.setViewControllers([loginVC], animated: true)
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true, completion: nil)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

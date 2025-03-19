@@ -32,8 +32,11 @@ class LoginViewModel {
             UserDefaults.standard.set(username, forKey: "username")
             print("sukses login harusnya")
             self.username.onNext(username)
+            self.password.onNext(password)
             loginResult.onNext(true)
         } else {
+            self.username.onNext("")
+            self.password.onNext("")
             loginResult.onNext(false)
             print("gaksuskses")
         }
@@ -44,6 +47,14 @@ class LoginViewModel {
         print("Registering username: \(username) and password: \(password)")  // Debugging line
         let user = User(username: username, password: password)
         userDatabase.saveUser(user: user)
+    }
+    
+    func logout() {
+        self.username.onNext("")
+        self.password.onNext("")
+        self.loginResult.onNext(false)
+        UserDefaults.standard.removeObject(forKey: "username")
+        print("Logged out and reset values")
     }
 
 }

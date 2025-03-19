@@ -45,6 +45,8 @@ class LoginViewController: UIViewController {
                     self.navigateToLanding()
                 } else {
                     self.showLoginFailedAlert()
+                    self.usernameTextField.text = ""
+                    self.passwordTextField.text = ""
                 }
             })
             .disposed(by: disposeBag)
@@ -111,7 +113,9 @@ class LoginViewController: UIViewController {
     
     private func navigateToLanding() {
         let landingVC = LandingViewController()
-        navigationController?.pushViewController(landingVC, animated: true)
+        landingVC.modalPresentationStyle = .fullScreen
+//        navigationController?.pushViewController(landingVC, animated: true)
+        self.present(landingVC, animated: true)
     }
     
     private func showLoginFailedAlert() {
