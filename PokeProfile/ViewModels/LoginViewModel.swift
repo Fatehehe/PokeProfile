@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel {
+    static let shared = LoginViewModel()
+    
     private let userDatabase = UserDatabase()
     private let disposeBag = DisposeBag()
     
@@ -29,6 +31,7 @@ class LoginViewModel {
         if isAuthenticated {
             UserDefaults.standard.set(username, forKey: "username")
             print("sukses login harusnya")
+            self.username.onNext(username)
             loginResult.onNext(true)
         } else {
             loginResult.onNext(false)

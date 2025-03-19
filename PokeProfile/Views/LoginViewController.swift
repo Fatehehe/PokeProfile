@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class LoginViewController: UIViewController {
-    private let viewModel = LoginViewModel()
+//    private let viewModel = LoginViewModel()
     private let disposeBag = DisposeBag()
     
     private let usernameTextField = UITextField()
@@ -23,22 +23,22 @@ class LoginViewController: UIViewController {
         setupUI()
         
         // Bind the UI elements to the ViewModel
-        usernameTextField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
-        passwordTextField.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
+        usernameTextField.rx.text.orEmpty.bind(to: LoginViewModel.shared.username).disposed(by: disposeBag)
+        passwordTextField.rx.text.orEmpty.bind(to: LoginViewModel.shared.password).disposed(by: disposeBag)
         
         loginButton.rx.tap
             .subscribe(onNext: {
-                self.viewModel.login()
+                LoginViewModel.shared.login()
             })
             .disposed(by: disposeBag)
 
         registerButton.rx.tap
             .subscribe(onNext: {
-                self.viewModel.register()
+                LoginViewModel.shared.register()
             })
             .disposed(by: disposeBag)
         
-        viewModel.loginResult
+        LoginViewModel.shared.loginResult
             .subscribe(onNext: { success in
                 print("Login result received: \(success)") // Debugging line
                 if success {

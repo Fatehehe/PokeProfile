@@ -7,24 +7,24 @@
 
 import UIKit
 import XLPagerTabStrip
+import RxSwift
+import RxCocoa
 
 class ProfileViewController: UIViewController, IndicatorInfoProvider {
     var viewModel: ProfileViewModel
-    private let logoutButton = UIButton()
+    
+    private let disposeBag = DisposeBag()
+    
+    
+    private let textUsername = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
         
-//        override func viewDidLoad() {
-//            super.viewDidLoad()
-//            view.backgroundColor = .lightGray
-//            
-//            logoutButton.setTitle("Logout", for: .normal)
-//            logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
-//            view.addSubview(logoutButton)
-//        }
-        
-    @objc func logoutTapped() {
-        // Navigate back to LoginViewController
-        let loginVC = LoginViewController()
-        navigationController?.setViewControllers([loginVC], animated: true)
+        LoginViewModel.shared.username
+            .bind(to: textUsername.rx.text)
+            .disposed(by: disposeBag)
     }
 
     init(viewModel: ProfileViewModel) {
@@ -35,20 +35,27 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        super.viewDidLoad()
+    
+    func setupUI(){
         view.backgroundColor = .lightGray
+        textUsername.font = UIFont.systemFont(ofSize: 24)
+        textUsername.textColor = .black
         
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
-        view.addSubview(logoutButton)
-        view.backgroundColor = .lightGray
-        let label = UILabel(frame: view.bounds)
-        label.text = "Profile Tab"
-        label.textAlignment = .center
-        view.addSubview(label)
+        textUsername.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(textUsername)
+        
+        NSLayoutConstraint.activate([
+            textUsername.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            textUsername.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    
+    }
+    
+    @objc func logoutTapped() {
+        // Navigate back to LoginViewController
+        let loginVC = LoginViewController()
+        navigationController?.setViewControllers([loginVC], animated: true)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
