@@ -20,6 +20,10 @@
 		AB6E214B2D89618E009493D0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E214A2D89618E009493D0 /* ProfileViewController.swift */; };
 		AB6E214D2D896306009493D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E214C2D896306009493D0 /* HomeViewModel.swift */; };
 		AB6E214F2D896343009493D0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E214E2D896343009493D0 /* ProfileViewModel.swift */; };
+		ABEB84AB2D8AAB9000B12200 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84AA2D8AAB9000B12200 /* User.swift */; };
+		ABEB84AD2D8AABD000B12200 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */; };
+		ABEB84B02D8AC95D00B12200 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84AF2D8AC95D00B12200 /* SQLiteDatabase.swift */; };
+		ABEB84B22D8AC9E800B12200 /* SQLiteCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,10 @@
 		AB6E214A2D89618E009493D0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AB6E214C2D896306009493D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AB6E214E2D896343009493D0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		ABEB84AA2D8AAB9000B12200 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		ABEB84AF2D8AC95D00B12200 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteCommands.swift; sourceTree = "<group>"; };
 		D74C59E939210887B178624F /* Pods-PokeProfile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeProfile.debug.xcconfig"; path = "Target Support Files/Pods-PokeProfile/Pods-PokeProfile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +83,8 @@
 		AB62FC3D2D8954DD007B1572 /* PokeProfile */ = {
 			isa = PBXGroup;
 			children = (
-				AB6E213E2D895EA9009493D0 /* Models */,
+				ABEB84AE2D8AC94C00B12200 /* SQLiteDatasource */,
+				ABEB84A92D8AAB8400B12200 /* Models */,
 				AB6E213F2D895EA9009493D0 /* ViewModels */,
 				AB6E21402D895EA9009493D0 /* Views */,
 				AB62FC3E2D8954DD007B1572 /* AppDelegate.swift */,
@@ -88,18 +97,12 @@
 			path = PokeProfile;
 			sourceTree = "<group>";
 		};
-		AB6E213E2D895EA9009493D0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		AB6E213F2D895EA9009493D0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				AB6E214C2D896306009493D0 /* HomeViewModel.swift */,
 				AB6E214E2D896343009493D0 /* ProfileViewModel.swift */,
+				ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -114,6 +117,23 @@
 				AB6E214A2D89618E009493D0 /* ProfileViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ABEB84A92D8AAB8400B12200 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABEB84AA2D8AAB9000B12200 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ABEB84AE2D8AC94C00B12200 /* SQLiteDatasource */ = {
+			isa = PBXGroup;
+			children = (
+				ABEB84AF2D8AC95D00B12200 /* SQLiteDatabase.swift */,
+				ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */,
+			);
+			path = SQLiteDatasource;
 			sourceTree = "<group>";
 		};
 		CE2997C1291D98D8F2D30CEF /* Pods */ = {
@@ -250,13 +270,17 @@
 			files = (
 				AB6E21422D89602D009493D0 /* LoginViewController.swift in Sources */,
 				AB62FC432D8954DD007B1572 /* ViewController.swift in Sources */,
+				ABEB84B02D8AC95D00B12200 /* SQLiteDatabase.swift in Sources */,
+				ABEB84AD2D8AABD000B12200 /* LoginViewModel.swift in Sources */,
 				AB62FC3F2D8954DD007B1572 /* AppDelegate.swift in Sources */,
 				AB6E214F2D896343009493D0 /* ProfileViewModel.swift in Sources */,
 				AB6E214D2D896306009493D0 /* HomeViewModel.swift in Sources */,
 				AB6E21442D896044009493D0 /* LandingViewController.swift in Sources */,
 				AB6E214B2D89618E009493D0 /* ProfileViewController.swift in Sources */,
 				AB62FC412D8954DD007B1572 /* SceneDelegate.swift in Sources */,
+				ABEB84AB2D8AAB9000B12200 /* User.swift in Sources */,
 				AB6E21492D89617A009493D0 /* HomeViewController.swift in Sources */,
+				ABEB84B22D8AC9E800B12200 /* SQLiteCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
