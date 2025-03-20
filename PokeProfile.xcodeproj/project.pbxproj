@@ -24,6 +24,8 @@
 		ABEB84AD2D8AABD000B12200 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */; };
 		ABEB84B02D8AC95D00B12200 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84AF2D8AC95D00B12200 /* SQLiteDatabase.swift */; };
 		ABEB84B22D8AC9E800B12200 /* SQLiteCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */; };
+		ABEB84DC2D8B388400B12200 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84DB2D8B388400B12200 /* Pokemon.swift */; };
+		ABEB84DE2D8B424500B12200 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84DD2D8B424500B12200 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		ABEB84AF2D8AC95D00B12200 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteCommands.swift; sourceTree = "<group>"; };
+		ABEB84DB2D8B388400B12200 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		ABEB84DD2D8B424500B12200 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D74C59E939210887B178624F /* Pods-PokeProfile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeProfile.debug.xcconfig"; path = "Target Support Files/Pods-PokeProfile/Pods-PokeProfile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +119,7 @@
 				AB6E21432D896044009493D0 /* LandingViewController.swift */,
 				AB6E21482D89617A009493D0 /* HomeViewController.swift */,
 				AB6E214A2D89618E009493D0 /* ProfileViewController.swift */,
+				ABEB84DD2D8B424500B12200 /* CustomCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				ABEB84AA2D8AAB9000B12200 /* User.swift */,
+				ABEB84DB2D8B388400B12200 /* Pokemon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 				AB62FC3F2D8954DD007B1572 /* AppDelegate.swift in Sources */,
 				AB6E214F2D896343009493D0 /* ProfileViewModel.swift in Sources */,
 				AB6E214D2D896306009493D0 /* HomeViewModel.swift in Sources */,
+				ABEB84DE2D8B424500B12200 /* CustomCell.swift in Sources */,
+				ABEB84DC2D8B388400B12200 /* Pokemon.swift in Sources */,
 				AB6E21442D896044009493D0 /* LandingViewController.swift in Sources */,
 				AB6E214B2D89618E009493D0 /* ProfileViewController.swift in Sources */,
 				AB62FC412D8954DD007B1572 /* SceneDelegate.swift in Sources */,

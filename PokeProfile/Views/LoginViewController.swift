@@ -54,17 +54,17 @@ class LoginViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         // Setup TextFields and Buttons
         usernameTextField.placeholder = "Username"
-        usernameTextField.textColor = .black
+        usernameTextField.textColor = .white
         usernameTextField.layer.borderColor = UIColor.lightGray.cgColor
         usernameTextField.layer.borderWidth = 1.0
         usernameTextField.layer.cornerRadius = 10
         
         passwordTextField.placeholder = "Password"
-        passwordTextField.textColor = .black
+        passwordTextField.textColor = .white
         passwordTextField.isSecureTextEntry = true
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
         passwordTextField.layer.borderWidth = 1.0

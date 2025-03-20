@@ -11,9 +11,9 @@ import XLPagerTabStrip
 class LandingViewController: ButtonBarPagerTabStripViewController {
 
     override func viewDidLoad() {
-        settings.style.buttonBarBackgroundColor = .blue
-        settings.style.buttonBarItemBackgroundColor = .blue
-        settings.style.selectedBarBackgroundColor = .red
+        settings.style.buttonBarBackgroundColor = .systemBackground
+        settings.style.buttonBarItemBackgroundColor = .systemBackground
+        settings.style.selectedBarBackgroundColor = .systemMint
         settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class LandingViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let homeVC = HomeViewController(viewModel: HomeViewModel())
+        let homeVC = HomeViewController()
         let profileVC = ProfileViewController(viewModel: ProfileViewModel())
         return [homeVC, profileVC]
     }

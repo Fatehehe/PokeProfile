@@ -40,9 +40,9 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func setupUI(){
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemBackground
         textUsername.font = UIFont.systemFont(ofSize: 24)
-        textUsername.textColor = .black
+        textUsername.textColor = .white
         
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.backgroundColor = .red
