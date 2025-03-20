@@ -80,7 +80,20 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
         
         tableView.rx.modelSelected(PokemonEntry.self)
             .subscribe(onNext: { pokemon in
-                print("ini \(pokemon.name)")
+                let url = pokemon.url
+                self.fetchPokemonDetails(url: url)
+            })
+            .disposed(by: disposeBag)
+        
+//        tableView.rx.modelSelected(PokemonSelected.self)
+//            .subscribe(onNext: { [weak self] in
+//                self?.tableView.reloadData()
+//            })
+        viewModel.pokemonSelected
+            .subscribe(onNext: { pokemonSelected in
+                // Handle selected Pokémon (e.g., navigate to a detail view or update the UI)
+//                print("Selected Pokémon: \(pokemonSelected.sprites.front_default)")
+                // For example, you might update the UI with the selected Pokémon details
             })
             .disposed(by: disposeBag)
         
@@ -95,6 +108,17 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Home")
+    }
+    
+    func fetchPokemonDetails(url: String) {
+        let pokemonApi = PokemonSelectedApi()
+        pokemonApi.getData(url: url) { pokemonSelected in
+            // Update the selected Pokémon in the ViewModel
+            HomeViewModel.shared.updatePokemonSelected(pokemonSelected: pokemonSelected)
+            for p in pokemonSelected.abilities {
+                print("ability -> \(p.ability.name)")
+            }
+        }
     }
 }
 

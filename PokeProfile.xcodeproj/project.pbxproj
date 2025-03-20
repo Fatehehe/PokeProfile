@@ -26,6 +26,7 @@
 		ABEB84B22D8AC9E800B12200 /* SQLiteCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */; };
 		ABEB84DC2D8B388400B12200 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84DB2D8B388400B12200 /* Pokemon.swift */; };
 		ABEB84DE2D8B424500B12200 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84DD2D8B424500B12200 /* CustomCell.swift */; };
+		ABEB84E02D8BFCED00B12200 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB84DF2D8BFCED00B12200 /* PokemonDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		ABEB84B12D8AC9E800B12200 /* SQLiteCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteCommands.swift; sourceTree = "<group>"; };
 		ABEB84DB2D8B388400B12200 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		ABEB84DD2D8B424500B12200 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		ABEB84DF2D8BFCED00B12200 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		D74C59E939210887B178624F /* Pods-PokeProfile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeProfile.debug.xcconfig"; path = "Target Support Files/Pods-PokeProfile/Pods-PokeProfile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				AB6E21412D89602D009493D0 /* LoginViewController.swift */,
 				AB6E21432D896044009493D0 /* LandingViewController.swift */,
 				AB6E21482D89617A009493D0 /* HomeViewController.swift */,
+				ABEB84DF2D8BFCED00B12200 /* PokemonDetailViewController.swift */,
 				AB6E214A2D89618E009493D0 /* ProfileViewController.swift */,
 				ABEB84DD2D8B424500B12200 /* CustomCell.swift */,
 			);
@@ -279,6 +282,7 @@
 				ABEB84B02D8AC95D00B12200 /* SQLiteDatabase.swift in Sources */,
 				ABEB84AD2D8AABD000B12200 /* LoginViewModel.swift in Sources */,
 				AB62FC3F2D8954DD007B1572 /* AppDelegate.swift in Sources */,
+				ABEB84E02D8BFCED00B12200 /* PokemonDetailViewController.swift in Sources */,
 				AB6E214F2D896343009493D0 /* ProfileViewModel.swift in Sources */,
 				AB6E214D2D896306009493D0 /* HomeViewModel.swift in Sources */,
 				ABEB84DE2D8B424500B12200 /* CustomCell.swift in Sources */,

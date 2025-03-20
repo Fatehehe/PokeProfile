@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 class CustomCell: UITableViewCell {
     static let identifier = "CustomCell"
@@ -45,8 +47,8 @@ class CustomCell: UITableViewCell {
         
         var tempString: String?
 //        
-        PokemonSelectedApi().getData(url: url) { sprite in
-            tempString = sprite.front_default
+        PokemonSelectedApi().getData(url: url) { pokemon in
+            tempString = pokemon.sprites.front_default
             guard let imageUrl = URL(string: tempString!) else { return }
             self.myImageView.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "questionmark"), options: [.cacheOriginalImage]) { result in
                 switch result {
@@ -56,6 +58,8 @@ class CustomCell: UITableViewCell {
                     print("Error fetching image: \(error.localizedDescription)")
                 }
             }
+            
+            HomeViewModel.shared.updatePokemonSelected(pokemonSelected: pokemon)
         }
     }
     

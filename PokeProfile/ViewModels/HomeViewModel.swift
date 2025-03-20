@@ -17,6 +17,7 @@ class HomeViewModel {
 
     var pokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
     var filteredPokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
+    var pokemonSelected = PublishSubject<PokemonSelected>()
 
     var searchText = BehaviorRelay<String>(value: "")
 
@@ -28,6 +29,10 @@ class HomeViewModel {
                 self?.filterPokemonList(searchText: searchText)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func updatePokemonSelected(pokemonSelected: PokemonSelected){
+        self.pokemonSelected.onNext(pokemonSelected)
     }
 
     func updatePokemonList(pokemonList: [PokemonEntry]) {

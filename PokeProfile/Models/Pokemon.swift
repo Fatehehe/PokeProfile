@@ -18,9 +18,21 @@ struct PokemonEntry: Codable, Identifiable{
     var url : String
 }
 
+struct Ability: Codable {
+    var ability: AbilityDetail
+    var is_hidden: Bool
+    var slot: Int
+}
+
+struct AbilityDetail: Codable {
+    var name: String
+    var url: String
+}
+
 struct PokemonSelected: Codable {
     var sprites: PokemonSprites
     var weight: Int
+    var abilities: [Ability]
 }
 
 struct PokemonSprites: Codable{
@@ -28,17 +40,17 @@ struct PokemonSprites: Codable{
 }
 
 class PokemonSelectedApi {
-    func getData(url: String, completion: @escaping (PokemonSprites) -> ()) {
+    func getData(url: String, completion: @escaping (PokemonSelected) -> ()) {
         AF.request(url).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
-                    let pokemonSprite = try JSONDecoder().decode(PokemonSelected.self, from: data)
+                    let pokemon = try JSONDecoder().decode(PokemonSelected.self, from: data)
                     DispatchQueue.main.async {
-                        completion(pokemonSprite.sprites)
+                        completion(pokemon)
                     }
                 } catch {
-                    print("Error decoding Pokemon sprites: \(error)")
+                    print("Error decoding Pokémon details: \(error)")
                 }
             case .failure(let error):
                 print("Error fetching data: \(error)")
@@ -84,6 +96,7 @@ class PokeAPI {
         }
     }
 }
+
 
 
 //class PokeAPI {
