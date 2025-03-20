@@ -6,32 +6,46 @@
 //
 
 import Foundation
-import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewModel {
+
     static let shared = HomeViewModel()
-    var pokemonUpdated : (()->Void)?
-    
-    var pokemonList = [PokemonEntry]()
-    var PokemonListFiltered = [PokemonEntry]()
-    
-    public func inSearchMode(_ searchController: UISearchController) -> Bool {
-        let isActive = searchController.isActive
-        let searchText = searchController.searchBar.text ?? ""
-        
-        return isActive && !searchText.isEmpty
-    }
-    
-    public func updateSearchController(searchBarText: String?) {
-        self.PokemonListFiltered = pokemonList
-        
-        if let searchText = searchBarText?.lowercased(), !searchText.isEmpty {
-            self.PokemonListFiltered = self.pokemonList.filter({
-                $0.name.lowercased().contains(searchText)
+
+    private let disposeBag = DisposeBag()
+
+    var pokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
+    var filteredPokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
+
+    var searchText = BehaviorRelay<String>(value: "")
+
+    var pokemonUpdated = PublishSubject<Void>()
+
+    private init() {
+        searchText.asObservable()
+            .subscribe(onNext: { [weak self] searchText in
+                self?.filterPokemonList(searchText: searchText)
             })
-        }
-
-        self.pokemonUpdated?()
+            .disposed(by: disposeBag)
     }
 
+    func updatePokemonList(pokemonList: [PokemonEntry]) {
+        self.pokemonList.accept(pokemonList)
+        filterPokemonList(searchText: searchText.value)
+        pokemonUpdated.onNext(())
+    }
+
+    func updateSearchText(_ text: String) {
+        searchText.accept(text)
+    }
+
+    private func filterPokemonList(searchText: String) {
+        if searchText.isEmpty {
+            filteredPokemonList.accept(pokemonList.value)
+        } else {
+            let filteredList = pokemonList.value.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            filteredPokemonList.accept(filteredList) 
+        }
+    }
 }
