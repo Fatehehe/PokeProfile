@@ -78,6 +78,9 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
             HomeViewModel.shared.pokemonList = pokemon
             self.tableView.reloadData() // Reload table after fetching data
         }
+        PokemonSelectedApi().getData(url: "https://pokeapi.co/api/v2/pokemon/7/") { url in
+            print("image is in \(url)")
+        }
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -117,7 +120,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             pokemon = HomeViewModel.shared.pokemonList[indexPath.row]
         }
         
-        cell.configure(with: UIImage(systemName: "lasso.badge.sparkles")!, and: pokemon.name)
+        cell.configure(with: pokemon.url, and: pokemon.name)
+//        cell.configure(with: UIImage(systemName: "lasso.badge.sparkles")!, and: pokemon.name)
         return cell
     }
 

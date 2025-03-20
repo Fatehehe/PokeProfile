@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomCell: UITableViewCell {
     static let identifier = "CustomCell"
@@ -36,9 +37,39 @@ class CustomCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with image: UIImage, and label: String){
-        self.myImageView.image = image
+    public func configure(with url: String, and label: String){
+//        self.myImageView.image = image
         self.mylabel.text = label
+        
+//        print("the url of image here : \(url)")
+        
+        var tempString: String?
+//        
+        PokemonSelectedApi().getData(url: url) { sprite in
+            tempString = sprite.front_default
+            guard let imageUrl = URL(string: tempString!) else { return }
+            self.myImageView.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "questionmark"), options: [.cacheOriginalImage]) { result in
+                switch result {
+                case .success(let value):
+                    print("Image fetched successfully: \(value.source.url?.absoluteString ?? "")")
+                case .failure(let error):
+                    print("Error fetching image: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    public func getSprite(url: String) {
+        guard let imageUrl = URL(string: url) else { return }
+        
+        myImageView.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "questionmark"), options: [.cacheOriginalImage]) { result in
+            switch result {
+            case .success(let value):
+                print("Image fetched successfully: \(value.source.url?.absoluteString ?? "")")
+            case .failure(let error):
+                print("Error fetching image: \(error.localizedDescription)")
+            }
+        }
     }
     
     private func setupUI(){
@@ -52,15 +83,12 @@ class CustomCell: UITableViewCell {
             myImageView.topAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
             myImageView.bottomAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor),
             myImageView.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
-            
-//            myImageView.heightAnchor.constraint(equalToConstant: 90),
             myImageView.widthAnchor.constraint(equalToConstant: 90),
             
             mylabel.leadingAnchor.constraint(equalTo: myImageView.trailingAnchor, constant: 16),
             mylabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12 ),
             mylabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             mylabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor ),
-            
         ])
     }
 }
