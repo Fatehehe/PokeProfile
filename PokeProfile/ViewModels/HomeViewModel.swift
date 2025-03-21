@@ -45,6 +45,15 @@ class HomeViewModel {
         pokemonUpdated.onNext(())
     }
 
+    func appendPokemonList(pokemonList: [PokemonEntry]) {
+        // Append new entries to the existing list
+        let currentList = self.pokemonList.value
+        let newList = currentList + pokemonList
+        self.pokemonList.accept(newList)
+        filterPokemonList(searchText: searchText.value)
+        pokemonUpdated.onNext(())
+    }
+    
     func updateSearchText(_ text: String) {
         searchText.accept(text)
     }

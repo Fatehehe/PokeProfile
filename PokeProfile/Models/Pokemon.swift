@@ -8,7 +8,14 @@
 import Foundation
 import Alamofire
 
-struct Pokemon: Codable {
+//struct Pokemon: Codable {
+//    var results: [PokemonEntry]
+//}
+
+struct PokemonResponse: Codable {
+    var count: Int
+    var next: String?
+    var previous: String?
     var results: [PokemonEntry]
 }
 
@@ -76,16 +83,16 @@ class PokemonSelectedApi {
 //}
 
 class PokeAPI {
-    func getData(completion: @escaping ([PokemonEntry]) -> ()) {
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=151"
+    func getData(limit: Int, offset: Int, completion: @escaping ([PokemonEntry], Int) -> ()) {
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)"
         
         AF.request(url).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
-                    let pokemonList = try JSONDecoder().decode(Pokemon.self, from: data)
+                    let pokemonResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
                     DispatchQueue.main.async {
-                        completion(pokemonList.results)
+                        completion(pokemonResponse.results, pokemonResponse.count)
                     }
                 } catch {
                     print("Error decoding Pokemon list: \(error)")

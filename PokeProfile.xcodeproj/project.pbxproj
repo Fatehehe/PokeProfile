@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040E4ECC6D9B33E78ACEFCFE /* Pods_PokeProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CA04E1420D63E0406E5877 /* Pods_PokeProfile.framework */; };
+		AB3FB6AC2D8D10EA00C9580B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3FB6AA2D8D10EA00C9580B /* MBProgressHUD.m */; };
 		AB62FC3F2D8954DD007B1572 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62FC3E2D8954DD007B1572 /* AppDelegate.swift */; };
 		AB62FC412D8954DD007B1572 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62FC402D8954DD007B1572 /* SceneDelegate.swift */; };
 		AB62FC432D8954DD007B1572 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62FC422D8954DD007B1572 /* ViewController.swift */; };
@@ -32,6 +33,9 @@
 /* Begin PBXFileReference section */
 		53A13B64AB252BA2850C3D42 /* Pods-PokeProfile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeProfile.release.xcconfig"; path = "Target Support Files/Pods-PokeProfile/Pods-PokeProfile.release.xcconfig"; sourceTree = "<group>"; };
 		92CA04E1420D63E0406E5877 /* Pods_PokeProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokeProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB3FB6A92D8D10E900C9580B /* PokeProfile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PokeProfile-Bridging-Header.h"; sourceTree = "<group>"; };
+		AB3FB6AA2D8D10EA00C9580B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		AB3FB6AB2D8D10EA00C9580B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AB62FC3B2D8954DD007B1572 /* PokeProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB62FC3E2D8954DD007B1572 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB62FC402D8954DD007B1572 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB3FB6A82D8D10CB00C9580B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				AB3FB6AB2D8D10EA00C9580B /* MBProgressHUD.h */,
+				AB3FB6AA2D8D10EA00C9580B /* MBProgressHUD.m */,
+				AB62FC3E2D8954DD007B1572 /* AppDelegate.swift */,
+				AB62FC402D8954DD007B1572 /* SceneDelegate.swift */,
+				AB62FC442D8954DD007B1572 /* Main.storyboard */,
+				AB62FC472D8954DE007B1572 /* Assets.xcassets */,
+				AB62FC492D8954DE007B1572 /* LaunchScreen.storyboard */,
+				AB3FB6A92D8D10E900C9580B /* PokeProfile-Bridging-Header.h */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		AB62FC322D8954DD007B1572 = {
 			isa = PBXGroup;
 			children = (
@@ -93,11 +112,7 @@
 				ABEB84A92D8AAB8400B12200 /* Models */,
 				AB6E213F2D895EA9009493D0 /* ViewModels */,
 				AB6E21402D895EA9009493D0 /* Views */,
-				AB62FC3E2D8954DD007B1572 /* AppDelegate.swift */,
-				AB62FC402D8954DD007B1572 /* SceneDelegate.swift */,
-				AB62FC442D8954DD007B1572 /* Main.storyboard */,
-				AB62FC472D8954DE007B1572 /* Assets.xcassets */,
-				AB62FC492D8954DE007B1572 /* LaunchScreen.storyboard */,
+				AB3FB6A82D8D10CB00C9580B /* Support */,
 				AB62FC4C2D8954DE007B1572 /* Info.plist */,
 			);
 			path = PokeProfile;
@@ -106,6 +121,7 @@
 		AB6E213F2D895EA9009493D0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AB6E214C2D896306009493D0 /* HomeViewModel.swift */,
 				AB6E214E2D896343009493D0 /* ProfileViewModel.swift */,
 				ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */,
 			);
@@ -131,7 +147,6 @@
 			children = (
 				ABEB84AA2D8AAB9000B12200 /* User.swift */,
 				ABEB84DB2D8B388400B12200 /* Pokemon.swift */,
-				AB6E214C2D896306009493D0 /* HomeViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,6 +211,7 @@
 				TargetAttributes = {
 					AB62FC3A2D8954DD007B1572 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
@@ -284,6 +300,7 @@
 				AB62FC3F2D8954DD007B1572 /* AppDelegate.swift in Sources */,
 				ABEB84E02D8BFCED00B12200 /* PokemonDetailViewController.swift in Sources */,
 				AB6E214F2D896343009493D0 /* ProfileViewModel.swift in Sources */,
+				AB3FB6AC2D8D10EA00C9580B /* MBProgressHUD.m in Sources */,
 				AB6E214D2D896306009493D0 /* HomeViewModel.swift in Sources */,
 				ABEB84DE2D8B424500B12200 /* CustomCell.swift in Sources */,
 				ABEB84DC2D8B388400B12200 /* Pokemon.swift in Sources */,
@@ -443,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L62ZSF9D69;
@@ -462,6 +480,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bimbim.PokeProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PokeProfile/Support/PokeProfile-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -473,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L62ZSF9D69;
@@ -492,6 +513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bimbim.PokeProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PokeProfile/Support/PokeProfile-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
