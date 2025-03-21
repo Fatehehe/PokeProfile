@@ -127,9 +127,6 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
         let pokemonApi = PokemonSelectedApi()
         pokemonApi.getData(url: url) { pokemonSelected in
             HomeViewModel.shared.updatePokemonSelected(pokemonSelected: pokemonSelected)
-            for p in pokemonSelected.abilities {
-                print("ability -> \(p.ability.name)")
-            }
             self.viewModel.abilitiesInfo.onNext(pokemonSelected.abilities)
         }
     }
@@ -141,7 +138,7 @@ extension HomeViewController {
             let progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
             progressHUD.label.text = label
             progressHUD.detailsLabel.text = detailLabel
-            progressHUD.contentColor = .systemMint
+            progressHUD.contentColor = .systemRed
         }
     }
     
@@ -160,7 +157,9 @@ extension HomeViewController : UIScrollViewDelegate, UITableViewDelegate {
         
         if contentOffsetY + height >= contentHeight + 50 {
             print("Reached the bottom of the table view")
-            loadMoreData()
+            if (searchController.searchBar.text!.isEmpty){
+                loadMoreData()
+            }
         }
     }
     

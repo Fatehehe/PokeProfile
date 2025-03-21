@@ -13,7 +13,7 @@ class LandingViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         settings.style.buttonBarBackgroundColor = .systemBackground
         settings.style.buttonBarItemBackgroundColor = .systemBackground
-        settings.style.selectedBarBackgroundColor = .systemMint
+        settings.style.selectedBarBackgroundColor = .systemRed
         settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         
         super.viewDidLoad()

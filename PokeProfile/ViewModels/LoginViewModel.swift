@@ -18,6 +18,8 @@ class LoginViewModel {
     var username = BehaviorSubject<String>(value: "")
     var password = BehaviorSubject<String>(value: "")
     var loginResult = PublishSubject<Bool>()
+    // New PublishSubject for registration result:
+    var registerResult = PublishSubject<Bool>()
     
     init() {
         userDatabase.createTable()
@@ -25,12 +27,11 @@ class LoginViewModel {
     
     func login() {
         guard let username = try? self.username.value(), let password = try? self.password.value() else { return }
-        print("Logging in with username: \(username) and password: \(password)")  // Debugging line
+        print("Logging in with username: \(username) and password: \(password)")
         let isAuthenticated = userDatabase.authenticateUser(username: username, password: password)
         
         if isAuthenticated {
             UserDefaults.standard.set(username, forKey: "username")
-            print("sukses login harusnya")
             self.username.onNext(username)
             self.password.onNext(password)
             loginResult.onNext(true)
@@ -38,16 +39,26 @@ class LoginViewModel {
             self.username.onNext("")
             self.password.onNext("")
             loginResult.onNext(false)
-            print("gaksuskses")
+            print("Login failed")
+        }
+    }
+    
+    func register() {
+        guard let username = try? self.username.value(),
+              let password = try? self.password.value() else { return }
+        print("Registering username: \(username) and password: \(password)")
+        let user = User(username: username, password: password)
+        do {
+            try userDatabase.saveUser(user: user)
+            // Registration succeeded
+            registerResult.onNext(true)
+        } catch {
+            // Registration failed (e.g., duplicate username)
+            print("Register failed: \(error)")
+            registerResult.onNext(false)
         }
     }
 
-    func register() {
-        guard let username = try? self.username.value(), let password = try? self.password.value() else { return }
-        print("Registering username: \(username) and password: \(password)")  // Debugging line
-        let user = User(username: username, password: password)
-        userDatabase.saveUser(user: user)
-    }
     
     func logout() {
         self.username.onNext("")
@@ -56,5 +67,5 @@ class LoginViewModel {
         UserDefaults.standard.removeObject(forKey: "username")
         print("Logged out and reset values")
     }
-
 }
+

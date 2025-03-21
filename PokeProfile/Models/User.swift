@@ -22,7 +22,6 @@ class UserDatabase {
     private let password = Expression<String>("password")
     
     init() {
-        // Initialize SQLite connection
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             let dbPath = documentDirectory.appendingPathComponent("user.db").path
@@ -46,18 +45,12 @@ class UserDatabase {
         }
     }
     
-    func saveUser(user: User) {
-        // Insert user into the database
+    func saveUser(user: User) throws {
         let insert = usersTable.insert(username <- user.username, password <- user.password)
-        do {
-            try db.run(insert)
-        } catch {
-            print("Insert failed: \(error)")
-        }
+        try db.run(insert)
     }
     
     func authenticateUser(username: String, password: String) -> Bool {
-        // Authenticate user by checking if the username and password exist
         let query = usersTable.filter(self.username == username && self.password == password)
         do {
             if try db.pluck(query) != nil {
