@@ -15,9 +15,21 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
     
     private let disposeBag = DisposeBag()
     
+    private let profileImage : UIImageView = {
+        let pk = UIImageView()
+        pk.image = UIImage(named: "profile")
+        pk.contentMode = .scaleAspectFit
+        return pk
+    }()
     
     private let textUsername = UILabel()
-    private let logoutButton = UIButton()
+    private let logoutButton : UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Logout", for: .normal)
+        btn.backgroundColor = .systemRed
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +56,21 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
         textUsername.font = UIFont.systemFont(ofSize: 24)
         textUsername.textColor = .white
         
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.backgroundColor = .red
-        logoutButton.layer.cornerRadius = 10
-        
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
         textUsername.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(profileImage)
         view.addSubview(textUsername)
         view.addSubview(logoutButton)
         
         NSLayoutConstraint.activate([
+            profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImage.heightAnchor.constraint(equalToConstant: 150),
+            
+            textUsername.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20),
             textUsername.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textUsername.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoutButton.bottomAnchor.constraint(equalTo: textUsername.bottomAnchor, constant: 100),
@@ -67,9 +81,7 @@ class ProfileViewController: UIViewController, IndicatorInfoProvider {
     }
     
     @objc func logoutTapped() {
-        // Navigate back to LoginViewController
         LoginViewModel.shared.logout()
-        
         let loginVC = LoginViewController()
         loginVC.modalPresentationStyle = .fullScreen
         self.present(loginVC, animated: true, completion: nil)
