@@ -14,7 +14,13 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
 
     private let disposeBag = DisposeBag()
 
-    private let searchController = UISearchController(searchResultsController: nil)
+    private let searchController : UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = false
+        search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.placeholder = "Search Pokemon..."
+        return search
+    }()
     
     private let tableView: UITableView = {
         let tableview = UITableView()
@@ -28,35 +34,28 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupSearchController()
-        setupTB()
+        setupUI()
         bindUI()
         getPokemonApi()
     }
     
-    func setupTB() {
+    func setupUI() {
         view.addSubview(tableView)
+        
+        tableView.scrollsToTop = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.navigationItem.searchController = searchController
+        self.definesPresentationContext = true
+        self.navigationItem.hidesSearchBarWhenScrolling = false
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-    }
-
-    func setupSearchController() {
-//        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Pokemon..."
-
-        self.navigationItem.searchController = searchController
-        self.definesPresentationContext = false
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-
+        
         tableView.tableHeaderView = searchController.searchBar
     }
 
@@ -71,29 +70,21 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
             }
             .disposed(by: disposeBag)
 
-        // Subscribe to when the Pokémon list is updated
         viewModel.pokemonUpdated
             .subscribe(onNext: { [weak self] in
                 self?.tableView.reloadData()
+                print("reloaded")
             })
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(PokemonEntry.self)
-            .subscribe(onNext: { pokemon in
+            .subscribe(onNext: { [weak self] pokemon in
+                self?.searchController.dismiss(animated: true, completion: nil)
                 let url = pokemon.url
-                self.fetchPokemonDetails(url: url)
-            })
-            .disposed(by: disposeBag)
-        
-//        tableView.rx.modelSelected(PokemonSelected.self)
-//            .subscribe(onNext: { [weak self] in
-//                self?.tableView.reloadData()
-//            })
-        viewModel.pokemonSelected
-            .subscribe(onNext: { pokemonSelected in
-                // Handle selected Pokémon (e.g., navigate to a detail view or update the UI)
-//                print("Selected Pokémon: \(pokemonSelected.sprites.front_default)")
-                // For example, you might update the UI with the selected Pokémon details
+                self?.fetchPokemonDetails(url: url)
+                let detailVC = PokemonDetailViewController()
+                detailVC.configureDetail(with: pokemon.url, and: pokemon.name)
+                self?.present(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -113,13 +104,12 @@ class HomeViewController: UIViewController, IndicatorInfoProvider {
     func fetchPokemonDetails(url: String) {
         let pokemonApi = PokemonSelectedApi()
         pokemonApi.getData(url: url) { pokemonSelected in
-            // Update the selected Pokémon in the ViewModel
             HomeViewModel.shared.updatePokemonSelected(pokemonSelected: pokemonSelected)
             for p in pokemonSelected.abilities {
                 print("ability -> \(p.ability.name)")
             }
+            
+            self.viewModel.abilitiesInfo.onNext(pokemonSelected.abilities)
         }
     }
 }
-
-

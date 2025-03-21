@@ -106,7 +106,6 @@
 		AB6E213F2D895EA9009493D0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AB6E214C2D896306009493D0 /* HomeViewModel.swift */,
 				AB6E214E2D896343009493D0 /* ProfileViewModel.swift */,
 				ABEB84AC2D8AABD000B12200 /* LoginViewModel.swift */,
 			);
@@ -132,6 +131,7 @@
 			children = (
 				ABEB84AA2D8AAB9000B12200 /* User.swift */,
 				ABEB84DB2D8B388400B12200 /* Pokemon.swift */,
+				AB6E214C2D896306009493D0 /* HomeViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

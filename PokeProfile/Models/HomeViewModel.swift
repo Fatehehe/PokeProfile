@@ -18,6 +18,10 @@ class HomeViewModel {
     var pokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
     var filteredPokemonList = BehaviorRelay<[PokemonEntry]>(value: [])
     var pokemonSelected = PublishSubject<PokemonSelected>()
+    
+    var imageInfo = PublishSubject<String>()
+    var nameInfo = PublishSubject<String>()
+    var abilitiesInfo = PublishSubject<[Ability]>()
 
     var searchText = BehaviorRelay<String>(value: "")
 
@@ -45,12 +49,12 @@ class HomeViewModel {
         searchText.accept(text)
     }
 
-    private func filterPokemonList(searchText: String) {
+    func filterPokemonList(searchText: String) {
         if searchText.isEmpty {
             filteredPokemonList.accept(pokemonList.value)
         } else {
-            let filteredList = pokemonList.value.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-            filteredPokemonList.accept(filteredList) 
+            let filtered = pokemonList.value.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            filteredPokemonList.accept(filtered)
         }
     }
 }

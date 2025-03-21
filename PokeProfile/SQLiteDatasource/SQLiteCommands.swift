@@ -53,10 +53,8 @@ class SQLiteCommands {
             return false
         }
         
-        // Query the user based on username and password
         let query = table.filter(self.username == username && self.password == password)
         do {
-            // Try to fetch a user from the database
             if let _ = try database.pluck(query) {
                 print("User authenticated successfully")
                 return true
